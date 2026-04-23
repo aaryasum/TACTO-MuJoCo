@@ -237,9 +237,8 @@ class Sensor:
             if obj_name not in self.objects:
                 continue
 
-            # data = np.zeros(6)
-            # mujoco.mj_contactForce(self.mj_model, self.mj_data, index, data)
-            data = self.mj_data.contact_force(index).reshape((6,)).copy()
+            data = np.zeros(6)
+            mujoco.mj_contactForce(self.mj_model, self.mj_data, index, data)
             # print(np.linalg.norm(data[:3]))
             # Accumulate normal forces
             self.normal_forces[cam_name][obj_name] += np.linalg.norm(data[:3])
