@@ -152,8 +152,6 @@ class Renderer:
                         primitive._unbind()
                         primitive._remove_from_context()
 
-                        primitive._add_to_context()
-
 
     def _init_pyrender(self):
         """
