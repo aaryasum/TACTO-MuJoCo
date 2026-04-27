@@ -238,7 +238,9 @@ class Sensor:
                 continue
 
             data = np.zeros(6)
-            mujoco.mj_contactForce(self.mj_model, self.mj_data, index, data)
+            raw_model = getattr(self.mj_model, '_model', self.mj_model)
+            raw_data = getattr(self.mj_data, '_data', self.mj_data)
+            mujoco.mj_contactForce(raw_model, raw_data, index, data)
             # print(np.linalg.norm(data[:3]))
             # Accumulate normal forces
             self.normal_forces[cam_name][obj_name] += np.linalg.norm(data[:3])
